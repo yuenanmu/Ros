@@ -11,6 +11,8 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  #自定义消息包-changes_1
+  qq_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -209,6 +211,15 @@ add_executable(chao_node src/chao_node.cpp)
 target_link_libraries(chao_node
 ${catkin_LIBRARIES}
 )
+
+#自定义消息包-changes_2
+add_executable(chao_node_1 src/chao_node_1.cpp)
+target_link_libraries(chao_node_1
+${catkin_LIBRARIES}
+)
+#自定义消息包-changes_2
+add_dependencies(chao_node_1 qq_msgs_generate_messages_cpp)
+
 add_executable(yao_node src/yao_node.cpp)
 target_link_libraries(yao_node
 ${catkin_LIBRARIES}
