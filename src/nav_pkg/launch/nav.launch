@@ -1,4 +1,5 @@
 <launch>
+    <include file="$(find wpr_simulation)/launch/wpb_stage_robocup.launch"/>
     <node pkg="move_base" type="move_base" name="move_base">
         <rosparam file="$(find wpb_home_tutorials)/nav_lidar/costmap_common_params.yaml" command="load" ns="global_costmap" />
         <rosparam file="$(find wpb_home_tutorials)/nav_lidar/costmap_common_params.yaml" command="load" ns="local_costmap" />
