@@ -9,13 +9,13 @@
         "/home/ubuntu/catkin_ws/devel/lib/python3/dist-packages",
         "/opt/ros/noetic/lib/python3/dist-packages"
     ],
-    "editor.quickSuggestions": {
-    "other": false,
-    "comments": false,
-    "strings": false
-    },
-    "editor.suggestOnTriggerCharacters": false,
-    "editor.intelliSense.enabled": false,
-    "editor.wordBasedSuggestions": "off",
-    "editor.snippetSuggestions": "none"
+    // "editor.quickSuggestions": {
+    // "other": false,
+    // "comments": false,
+    // "strings": false
+    // },
+    // "editor.suggestOnTriggerCharacters": false,
+    // "editor.intelliSense.enabled": false,
+    // "editor.wordBasedSuggestions": "off",
+    // "editor.snippetSuggestions": "none"
 }
