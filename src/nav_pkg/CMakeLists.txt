@@ -223,3 +223,8 @@ add_executable(wp_node_v2 src/wp_node_v2.cpp)
 target_link_libraries(wp_node_v2
   ${catkin_LIBRARIES}
 )
+add_executable(wp_node_v3 src/wp_node_v3.cpp)
+add_dependencies(wp_node_v3 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})#没有就要额外扫描一次，添加依赖关系，额外的扫描会增加编译时间，添加依赖关系后就不需要额外扫描了
+target_link_libraries(wp_node_v3
+  ${catkin_LIBRARIES}
+)
