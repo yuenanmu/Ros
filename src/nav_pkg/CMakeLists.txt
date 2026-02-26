@@ -217,3 +217,9 @@ add_executable(wp_node src/wp_node.cpp)
 target_link_libraries(wp_node
   ${catkin_LIBRARIES}
 )
+
+add_executable(wp_node_v2 src/wp_node_v2.cpp)
+
+target_link_libraries(wp_node_v2
+  ${catkin_LIBRARIES}
+)
