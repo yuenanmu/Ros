@@ -211,3 +211,9 @@ add_executable(nav_client src/nav_client.cpp)
 target_link_libraries(nav_client
   ${catkin_LIBRARIES}
 )
+
+add_executable(wp_node src/wp_node.cpp)
+
+target_link_libraries(wp_node
+  ${catkin_LIBRARIES}
+)
