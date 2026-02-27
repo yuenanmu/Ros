@@ -226,3 +226,9 @@ target_link_libraries(cv_follow_node
   ${catkin_LIBRARIES}
   ${OpenCV_LIBRARIES}
 )
+add_executable(cv_face_detect src/cv_face_detect.cpp)
+add_dependencies(cv_face_detect ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(cv_face_detect
+  ${catkin_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+)
