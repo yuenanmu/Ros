@@ -34,7 +34,12 @@ def img_callback(msg):
     hsv_image=cv2.merge([h,s,v]) #合并HSV通道
 
     ##HSV空间二值化
-    th_image=cv2.inRange(hsv_image,(hue_min,satu_min,val_min),(hue_max,satu_max,val_max))
+    #th_image=cv2.inRange(hsv_image,(hue_min,satu_min,val_min),(hue_max,satu_max,val_max))
+    # [优化] 使用numpy数组加速inRange
+    lower_b = np.array([hue_min, satu_min, val_min])
+    upper_b = np.array([hue_max, satu_max, val_max])
+    th_image = cv2.inRange(hsv_image, lower_b, upper_b)
+    
     ##开操作，去除噪点
     element=cv2.getStructuringElement(cv2.MORPH_RECT,(5,5)) #定义结构元素
     th_image=cv2.morphologyEx(th_image,cv2.MORPH_OPEN,element)
@@ -43,15 +48,20 @@ def img_callback(msg):
     #画十字线
     target_x,target_y,pix_count=0,0,0
     image_height,image_width=th_image.shape[:2]
-    for y in range(image_height):
-        for x in range(image_width):
-            if th_image[y,x]==255:
-                target_x+=x
-                target_y+=y
-                pix_count+=1
-    if pix_count>0:
-        target_x//=pix_count
-        target_y//=pix_count
+    # for y in range(image_height):
+    #     for x in range(image_width):
+    #         if th_image[y,x]==255:
+    #             target_x+=x
+    #             target_y+=y
+    #             pix_count+=1
+    # if pix_count>0:
+    #     target_x//=pix_count
+    #     target_y//=pix_count
+     # [核心优化] 使用图像矩计算质心 (速度快百倍)
+    M = cv2.moments(th_image)
+    if M["m00"] > 0:
+        target_x = int(M["m10"] / M["m00"])
+        target_y = int(M["m01"] / M["m00"])
         print(f"颜色质心坐标( {target_x} , {target_y} )  点数 = {pix_count}")
         #在cv_image上画坐标
         cv2.line(cv_image,(target_x-10,target_y),(target_x+10,target_y),(0,255,0),2)
