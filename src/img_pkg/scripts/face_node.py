@@ -29,4 +29,6 @@ if __name__=="__main__":
     rospy.init_node("face_node")#初始化ROS节点
     #订阅机器人视觉传感器Kinect2的图像话题
     rgb_sub = rospy.Subscriber("/kinect2/hd/image_color_rect",Image,img_callback,queue_size=10)
+    cv2.namedWindow("face window",cv2.WINDOW_NORMAL)#创建一个可调整大小的窗口
+    #cv2.resizeWindow("face window", 640, 480)
     rospy.spin()#保持节点运行，等待回调函数被调用
